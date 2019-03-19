@@ -12,7 +12,7 @@ from colored import fg, attr
 
 print(f' Author: {__author__} \n License: {__license__} \n version: {__version__} \n Email: {__email__} \n Status: {__status__} \n')
 
-url = 'https://confluence.moneta.cz'
+url = "https://your_url_adress"
 timer = 1000 #count repeat
 count = 0
 
@@ -25,7 +25,7 @@ while timer > 0:
     timer -=1
     count +=1
     try:
-        site = requests.get("https://confluence.moneta.cz")
+        site = requests.get(url)
         if str(site) == '<Response [200]>':
            print(f'Test {count}: {green} Check ok {res}')
             #request.session().close()
