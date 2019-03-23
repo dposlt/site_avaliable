@@ -7,32 +7,46 @@ __version__ = "1.0.1"
 __email__ = "david.poslt@gmail.com"
 __status__ = "Develop"
 
-import requests, time
+#import requests
 from colored import fg, attr
+from time import sleep
+from sys import stdout
 
-print(f' Author: {__author__} \n License: {__license__} \n version: {__version__} \n Email: {__email__} \n Status: {__status__} \n')
 
-url = "https://your_url_adress"
-timer = 1000 #count repeat
+def credentials():
+    allinone = ' Author: {author} \n Licence: {licence} \n Email: {email} \n Status: {status} \n'.format(author = __author__, licence = __license__, email = __email__, status = __status__)
+    count = 0
+    while len(allinone) != count:
+       for i in str(allinone):
+          count += 1
+          stdout.write(i)
+          stdout.flush()
+          sleep(.300)
+
+credentials()
+
+
+url = "https://confluence.moneta.cz"
 count = 0
-
+timer = 100 # how many repeat
 #set colors
 green = fg("green")
 red = fg("red")
 res = attr("reset")
 
-while timer > 0:
-    timer -=1
+'''
+while count < timer:
     count +=1
     try:
-        site = requests.get(url)
+        site = requests.get("https://confluence.moneta.cz")
         if str(site) == '<Response [200]>':
-           print(f'Test {count}: {green} Check ok {res}')
-            #request.session().close()
-           time.sleep(.700)
+            #stdout.write(f'Test: \r{count}: {green} Check ok {res}')
+            stdout.flush()
+            sleep(.700)
         else:
             print('Status isn\'t available')
     except:
         print(f'{red}Connection aborted {res}')
         exit()
 
+'''
