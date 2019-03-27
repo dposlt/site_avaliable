@@ -23,30 +23,46 @@ def credentials():
           stdout.flush()
           sleep(.300)
 
-credentials()
+def seturl(url):
+    return  url
+
+#url = "https://confluence.moneta.cz"
+
+def settingscollors():
+    #set colors
+    green = fg("green")
+    red = fg("red")
+    res = attr("reset")
+
+    return green,red,res
+
+def settimer():
+    timer = 100
+    count = 0
+
+    return timer, count
 
 
-url = "https://confluence.moneta.cz"
-count = 0
-timer = 100 # how many repeat
-#set colors
-green = fg("green")
-red = fg("red")
-res = attr("reset")
+def main():
+    green, red, res = settingscollors()
+    timer, count = settimer()
+    url = seturl("https://confluence.moneta.cz")
 
-'''
-while count < timer:
-    count +=1
-    try:
-        site = requests.get("https://confluence.moneta.cz")
-        if str(site) == '<Response [200]>':
-            #stdout.write(f'Test: \r{count}: {green} Check ok {res}')
-            stdout.flush()
-            sleep(.700)
-        else:
-            print('Status isn\'t available')
-    except:
-        print(f'{red}Connection aborted {res}')
-        exit()
+    while count < timer:
+        count +=1
+        try:
+            site = requests.get("https://confluence.moneta.cz")
 
-'''
+            if str(site) == '<Response [200]>':
+                stdout.write(f'Test: \r{count}: {green} Check ok {res}')
+                stdout.flush()
+                sleep(.700)
+            else:
+                print('Status isn\'t available')
+        except:
+            print(f'{red} connection aborted {res}')
+            exit()
+
+
+if __name__ == '__main__':
+    main()
