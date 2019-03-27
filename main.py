@@ -26,7 +26,6 @@ def credentials():
 def seturl(url):
     return  url
 
-#url = "https://confluence.moneta.cz"
 
 def settingscollors():
     #set colors
@@ -46,12 +45,12 @@ def settimer():
 def main():
     green, red, res = settingscollors()
     timer, count = settimer()
-    url = seturl("https://confluence.moneta.cz")
+    url = seturl("baseurl")
 
     while count < timer:
         count +=1
         try:
-            site = requests.get("https://confluence.moneta.cz")
+            site = requests.get(url)
 
             if str(site) == '<Response [200]>':
                 stdout.write(f'Test: \r{count}: {green} Check ok {res}')
